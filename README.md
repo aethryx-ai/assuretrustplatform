@@ -6,7 +6,8 @@
 
 This contains everything you need to run your app locally.
 
-View your app in AI Studio: https://ai.studio/apps/6e94dd9c-47a8-465d-93f4-260fd2dfb22a
+View our app: https://ai.studio/apps/6e94dd9c-47a8-465d-93f4-260fd2dfb22a
+](https://aethryx-assuretrust-ai-governance-platform-1061230695456.us-west1.run.app/
 
 ## Run Locally
 
