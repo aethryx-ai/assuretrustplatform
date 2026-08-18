@@ -7,6 +7,123 @@ import { Workflow } from './types';
 
 export const MOCK_WORKFLOWS: Workflow[] = [
   {
+    id: '4',
+    name: 'Private Banking Source of Wealth Assessment (CIMB Pilot)',
+    domain: 'Finance',
+    description: 'Governed AI-assisted reconstruction and plausibility assessment of private banking customers’ declared wealth, mapping every claim to corroborating evidence and escalating contradictions or unexplained wealth to human compliance review.',
+    aiType: 'Agentic System',
+    dataSensitivity: 'High',
+    decisionImpact: 'High',
+    riskLevel: 'HIGH',
+    riskScore: 81,
+    riskExplanation: 'Source-of-Wealth assessment for private banking customers carries elevated ML/TF risk under ACIP guidance, which calls for rigour proportionate to risk when assessing the plausibility of declared wealth rather than merely identifying assets.',
+    regulatoryMapping: [
+      {
+        name: 'ACIP SoW Due Diligence Guidance',
+        status: 'Partial',
+        controls: ['Risk-based plausibility assessment', 'Evidence provenance'],
+        missingControls: ['Standardised unexplained-wealth threshold', 'Escalation SLA']
+      },
+      {
+        name: 'MAS Notice 626 (AML/CFT)',
+        status: 'Compliant',
+        controls: ['Enhanced due diligence for high-risk customers', 'Ongoing monitoring'],
+        missingControls: []
+      },
+      {
+        name: 'FATF Recommendations',
+        status: 'Partial',
+        controls: ['Beneficial ownership verification'],
+        missingControls: ['Cross-border source verification']
+      }
+    ],
+    agentTrace: [
+      {
+        agent: 'Evidence Ingestion Agent',
+        action: 'Ingest approved SoW documents',
+        input: 'Company registry filings, bank statements, tax records, sale agreements',
+        output: '17 documents normalized',
+        riskContribution: 5,
+        dependencies: []
+      },
+      {
+        agent: 'Extraction Agent',
+        action: 'Extract entities, amounts, ownership % and dates',
+        input: '17 normalized documents',
+        output: 'Structured wealth events (income, dividends, disposals)',
+        riskContribution: 10,
+        dependencies: ['Evidence Ingestion Agent']
+      },
+      {
+        agent: 'Wealth Reconstruction Agent',
+        action: 'Build wealth accumulation timeline',
+        input: 'Structured wealth events',
+        output: 'Timeline: employment income → 65% stake in ABC Holdings → dividends → SGD 12M disposal',
+        riskContribution: 15,
+        dependencies: ['Extraction Agent']
+      },
+      {
+        agent: 'Evidence Mapping Agent',
+        action: 'Link each declared wealth claim to supporting evidence',
+        input: 'Wealth timeline',
+        output: 'Evidence coverage: 86% of declared SGD 22.4M net worth',
+        riskContribution: 10,
+        dependencies: ['Wealth Reconstruction Agent']
+      },
+      {
+        agent: 'Plausibility Agent',
+        action: 'Test whether declared wealth is reasonably supported',
+        input: 'Evidence-mapped timeline',
+        output: 'Plausibility: Medium-High; SGD 2.8M unexplained',
+        riskContribution: 20,
+        dependencies: ['Evidence Mapping Agent']
+      },
+      {
+        agent: 'Contradiction Detection Agent',
+        action: 'Find inconsistent amounts, dates or ownership claims',
+        input: 'Evidence-mapped timeline',
+        output: '2 contradictions: disposal dated 2022, bank credit dated 2023',
+        riskContribution: 20,
+        dependencies: ['Plausibility Agent']
+      },
+      {
+        agent: 'Risk Assessment Agent',
+        action: 'Produce SoW risk indicators and confidence score',
+        input: 'Plausibility + contradiction findings',
+        output: 'SoW risk: Elevated; AI confidence: 81%',
+        riskContribution: 15,
+        dependencies: ['Contradiction Detection Agent']
+      },
+      {
+        agent: 'Governance Agent',
+        action: 'Apply CIMB SoW policy and route for review',
+        input: 'Risk assessment output',
+        output: 'Escalated: Enhanced human review required',
+        riskContribution: 5,
+        dependencies: ['Risk Assessment Agent']
+      }
+    ],
+    decisionTrace: {
+      intent: 'Assess the plausibility of a private banking customer’s declared source of wealth and surface evidence gaps for human review, rather than autonomously approving or rejecting the customer.',
+      dataUsed: ['Company registry filings', 'Bank statements', 'Tax records', 'Sale agreements', 'Dividend vouchers', 'Declared net worth statement'],
+      assumptions: ['Submitted documents are genuine and complete', 'Bank credit dates reliably reflect settlement of disclosed transactions'],
+      logic: 'Reconstructs a wealth evidence graph mapping each declared source to corroborating documents, computes evidence coverage and flags timeline or amount contradictions between linked claims.',
+      failurePoints: ['Incomplete document sets understating evidence coverage', 'Legitimate timing gaps between agreement and settlement misread as contradictions', 'Evidence graph blind to undisclosed sources of wealth']
+    },
+    autonomyLevel: 'RESTRICTED',
+    triggeredRules: [
+      'Unexplained wealth (SGD 2.8M) exceeds materiality threshold',
+      'Timeline contradiction: disposal date precedes corroborating bank credit by 12 months'
+    ],
+    recommendations: [
+      'Route to RM/AML/Compliance for enhanced evidence review before onboarding decision',
+      'Request supplementary evidence for the SGD 2.8M unexplained portion',
+      'Reconcile disposal agreement date against bank settlement date with the customer',
+      'Retain full evidence provenance and reviewer decision trail for audit'
+    ],
+    createdAt: '2026-08-14T09:00:00Z'
+  },
+  {
     id: '1',
     name: 'AI-based Loan Approval System',
     domain: 'Finance',
